@@ -1,0 +1,11 @@
+secure
+fastapi
+black
+uvicorn
+sqlalchemy
+sqlalchemy.orm
+starlette.responses
+starlette.requests
+black
+fastapi-jinja
+sqlalchemy

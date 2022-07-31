@@ -1,2 +1,2 @@
 # Portfolio
-pip install fastapi
+pip install -r requirements.txt
