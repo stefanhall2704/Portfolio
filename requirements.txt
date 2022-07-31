@@ -9,3 +9,7 @@ starlette.requests
 black
 fastapi-jinja
 sqlalchemy
+jinja2
+python-decouple
+alembic
+pydantic
