@@ -17,12 +17,25 @@ router = APIRouter(
     tags=["Projects"]
 )
 
-
+# region schemas
 class ProjectRequest(BaseModel):
     title: str
     link: str
     first_name: str
     last_name: str
+
+class OptionalProjectRequest(BaseModel):
+    title: Optional[str]
+    link: Optional[str]
+    first_name: Optional[str]
+    last_name: Optional[str]
+    class Config:
+        arbitrary_types_allowed = True
+
+# endregion schemas
+
+
+# region crud
 
 
 async def create_db_project(
@@ -32,7 +45,7 @@ async def create_db_project(
     first_name: str,
     last_name: str,
 ):
-    db_project = src.utils.models.Projects()
+    db_project = utils.models.Projects()
     db_project.title = title
     db_project.link = link
     db_project.first_name = first_name
@@ -42,6 +55,65 @@ async def create_db_project(
     return db_project
 
 
+async def get_project_from_db_by_id(db: Session, project_id: int):
+    db_project = (
+        db.query(utils.models.Projects)
+        .filter(utils.models.Projects.id == project_id)
+        .first()
+    )
+    if not db_project:
+        raise HTTPException(status_code=404, detail="Project Not Found")
+    return db_project
+
+
+async def get_project_from_db_by_title(db: Session, title: str):
+    db_project = (
+        db.query(utils.models.Projects)
+        .filter(utils.models.Projects.title == title)
+        .first()
+    )
+    if not db_project:
+        raise HTTPException(status_code=404, detail="Project Not Found")
+    return db_project
+
+
+async def delete_db_project(db: Session, project_id: int):
+    db_project = await get_project_from_db_by_id(db, project_id=project_id)
+    project_title = db_project.title
+    db.delete(db_project)
+    db.commit()
+    return f"Project {project_title} Deleted"
+
+
+
+# endregion crud
+
+# region endpoints
+
+# region endpoints.get
+
+@router.get("/{project_id}", response_model=utils.default_schemas.Projects)
+async def get_project_by_id(project_id: int, db: Session = Depends(get_db)) -> dict():
+    """
+    Get Project by ID
+    """
+    db_project = await get_project_from_db_by_id(db, project_id=project_id)
+    return db_project
+
+
+@router.get(
+    "/title/{title}", response_model=utils.default_schemas.Projects
+)
+async def get_project_by_title(title: str, db: Session = Depends(get_db)):
+    """
+    Get Project by Title
+    """
+    db_project = await get_project_from_db_by_title(db, title=title)
+    return db_project
+
+# endregion endponts.get
+
+# region endpoints.post
 
 
 @router.post(
@@ -49,13 +121,49 @@ async def create_db_project(
     response_model=utils.default_schemas.Projects,
 )
 async def create_project(
-    release_request: ProjectRequest, db: Session = Depends(get_db)
+    project_request: ProjectRequest, db: Session = Depends(get_db)
 ):
-    project = create_db_project(
+    project = await create_db_project(
         db, 
-        release_request.title, 
-        release_request.link, 
-        release_request.first_name, 
-        release_request.last_name
+        project_request.title, 
+        project_request.link, 
+        project_request.first_name, 
+        project_request.last_name
     )
     return project
+
+
+# region endpoints.put
+
+# @router.put(
+#     "/update/{project_id}",
+#     response_model=utils.models.Projects,
+# )
+# async def update_full_project(
+#     project_id: int, project_request: OptionalProjectRequest, db: Session = Depends(get_db)):
+
+#     db_project = await get_project_from_db_by_id(db, project_id=project_id)
+
+#     db_project.title = project_request.title
+#     db_project.link = project_request.link
+#     db_project.first_name = project_request.first_name
+#     db_project.last_name = project_request.last_name
+#     db.add(db_project)
+#     db.commit()
+#     return db_project
+
+
+# endregion endponts.put
+
+# region endpoints.delete
+
+
+@router.delete("/{project_id}")
+async def delete_project(project_id: int, db: Session = Depends(get_db)):
+    db_project = await delete_db_project(db, project_id=project_id)
+    return db_project
+
+
+# endregion endpoints.delete
+
+# endregion endpoints
