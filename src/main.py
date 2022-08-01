@@ -16,6 +16,7 @@ from starlette.responses import JSONResponse, RedirectResponse
 
 from frontend.routers.api import projects
 
+
 app = FastAPI()
 
 
