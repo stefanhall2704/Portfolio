@@ -15,7 +15,8 @@ router = APIRouter(tags=["frontend"], include_in_schema=False)
 templates = Jinja2Templates(directory="src/templates")
 
 
-#region crud
+# region crud
+
 
 async def get_project_from_db_by_id(db: Session, project_id: int):
     db_project = (
@@ -27,7 +28,9 @@ async def get_project_from_db_by_id(db: Session, project_id: int):
         raise HTTPException(status_code=404, detail="Project Not Found")
     return db_project
 
+
 # endregion crud
+
 
 @router.get(
     "/project/{project_id}",
