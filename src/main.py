@@ -19,10 +19,10 @@ from frontend.routers.api import projects
 app = FastAPI()
 
 
-
 @app.get("/home")
 async def root():
     return {"message": "Hello World"}
+
 
 app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
@@ -30,6 +30,7 @@ app.mount("/static", StaticFiles(directory="src/static"), name="static")
 @app.get("/", response_class=RedirectResponse, include_in_schema=False)
 async def redirect_to_login():
     return RedirectResponse("/home")
+
 
 app.include_router(projects.router)
 
