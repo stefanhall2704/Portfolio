@@ -28,9 +28,6 @@ class OptionalProjectRequest(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
 
-    class Config:
-        arbitrary_types_allowed = True
-
 
 # endregion schemas
 
@@ -134,7 +131,7 @@ async def create_project(
 
 # region endpoints.put
 
-# @router.put(
+# @router.patch(
 #     "/update/{project_id}",
 #     response_model=utils.models.Projects,
 # )
