@@ -11,20 +11,6 @@ templates = Jinja2Templates(directory="src/templates")
 
 app.mount("/static", StaticFiles(directory="src/static"), name="static")
 
-# @router.get(
-#     "/home",
-#     response_class=HTMLResponse,
-# )
-# async def get_all_releases(request: Request):
-#     return templates.TemplateResponse(
-
-#         "portfolio/home.html",
-#         context={
-#             "request": request,
-#             "testing": "Hello World"
-#         },
-#     )
-
 
 @router.get(
     "/project/{project_id}",
@@ -37,8 +23,3 @@ async def home_page(project_id: int, request: Request, db: Session = Depends(get
         "portfolio/project.html",
         context={"request": request, "segment": segment, "project": db_project},
     )
-
-
-@app.get("/items/{id}", response_class=HTMLResponse)
-async def read_item(request: Request, id: str, db: dependds):
-    return templates.TemplateResponse("item.html", {"request": request, "id": id})
