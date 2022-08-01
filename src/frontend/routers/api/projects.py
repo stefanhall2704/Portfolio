@@ -12,10 +12,7 @@ import utils.models
 from utils.dependency import get_db
 
 
-router = APIRouter(
-    prefix="/api/project",
-    tags=["Projects"]
-)
+router = APIRouter(prefix="/api/project", tags=["Projects"])
 
 # region schemas
 class ProjectRequest(BaseModel):
@@ -24,13 +21,16 @@ class ProjectRequest(BaseModel):
     first_name: str
     last_name: str
 
+
 class OptionalProjectRequest(BaseModel):
     title: Optional[str]
     link: Optional[str]
     first_name: Optional[str]
     last_name: Optional[str]
+
     class Config:
         arbitrary_types_allowed = True
+
 
 # endregion schemas
 
@@ -85,15 +85,15 @@ async def delete_db_project(db: Session, project_id: int):
     return f"Project {project_title} Deleted"
 
 
-
 # endregion crud
 
 # region endpoints
 
 # region endpoints.get
 
+
 @router.get("/{project_id}", response_model=utils.default_schemas.Projects)
-async def get_project_by_id(project_id: int, db: Session = Depends(get_db)) -> dict():
+async def get_project_by_id(project_id: int, db: Session = Depends(get_db)):
     """
     Get Project by ID
     """
@@ -101,15 +101,14 @@ async def get_project_by_id(project_id: int, db: Session = Depends(get_db)) -> d
     return db_project
 
 
-@router.get(
-    "/title/{title}", response_model=utils.default_schemas.Projects
-)
+@router.get("/title/{title}", response_model=utils.default_schemas.Projects)
 async def get_project_by_title(title: str, db: Session = Depends(get_db)):
     """
     Get Project by Title
     """
     db_project = await get_project_from_db_by_title(db, title=title)
     return db_project
+
 
 # endregion endponts.get
 
@@ -124,11 +123,11 @@ async def create_project(
     project_request: ProjectRequest, db: Session = Depends(get_db)
 ):
     project = await create_db_project(
-        db, 
-        project_request.title, 
-        project_request.link, 
-        project_request.first_name, 
-        project_request.last_name
+        db,
+        project_request.title,
+        project_request.link,
+        project_request.first_name,
+        project_request.last_name,
     )
     return project
 

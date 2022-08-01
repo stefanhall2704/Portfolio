@@ -4,6 +4,7 @@ from sqlalchemy.sql.schema import ForeignKey
 
 Base = declarative_base()
 
+
 class Projects(Base):
     __tablename__ = "Projects"
     id = sa.Column(sa.Integer, primary_key=True, index=True, nullable=False, name="ID")
