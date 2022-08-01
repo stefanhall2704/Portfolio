@@ -131,22 +131,26 @@ async def create_project(
 
 # region endpoints.put
 
-# @router.patch(
-#     "/update/{project_id}",
-#     response_model=utils.models.Projects,
-# )
-# async def update_full_project(
-#     project_id: int, project_request: OptionalProjectRequest, db: Session = Depends(get_db)):
 
-#     db_project = await get_project_from_db_by_id(db, project_id=project_id)
+@router.put(
+    "/update/{project_id}",
+    response_model=utils.default_schemas.Projects,
+)
+async def update_full_project(
+    project_id: int,
+    project_request: OptionalProjectRequest,
+    db: Session = Depends(get_db),
+):
 
-#     db_project.title = project_request.title
-#     db_project.link = project_request.link
-#     db_project.first_name = project_request.first_name
-#     db_project.last_name = project_request.last_name
-#     db.add(db_project)
-#     db.commit()
-#     return db_project
+    db_project = await get_project_from_db_by_id(db, project_id=project_id)
+
+    db_project.title = project_request.title
+    db_project.link = project_request.link
+    db_project.first_name = project_request.first_name
+    db_project.last_name = project_request.last_name
+    db.add(db_project)
+    db.commit()
+    return db_project
 
 
 # endregion endponts.put
