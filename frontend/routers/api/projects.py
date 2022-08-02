@@ -20,6 +20,7 @@ class ProjectRequest(BaseModel):
     link: str
     first_name: str
     last_name: str
+    picture: str
 
 
 class OptionalProjectRequest(BaseModel):
@@ -27,6 +28,7 @@ class OptionalProjectRequest(BaseModel):
     link: Optional[str]
     first_name: Optional[str]
     last_name: Optional[str]
+    picture: Optional[str]
 
 
 # endregion schemas
@@ -41,12 +43,14 @@ async def create_db_project(
     link: str,
     first_name: str,
     last_name: str,
+    picture: str,
 ):
     db_project = utils.models.Projects()
     db_project.title = title
     db_project.link = link
     db_project.first_name = first_name
     db_project.last_name = last_name
+    db_project.picture = picture
     db.add(db_project)
     db.commit()
     return db_project
@@ -125,6 +129,7 @@ async def create_project(
         project_request.link,
         project_request.first_name,
         project_request.last_name,
+        project_request.picture,
     )
     return project
 
@@ -148,6 +153,7 @@ async def update_full_project(
     db_project.link = project_request.link
     db_project.first_name = project_request.first_name
     db_project.last_name = project_request.last_name
+    db_project.picture = project_request.picture
     db.add(db_project)
     db.commit()
     return db_project

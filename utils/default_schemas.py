@@ -11,6 +11,7 @@ class Projects(BaseModel):
     link: str
     first_name: str
     last_name: str
+    picture: str
 
     class Config:
         orm_mode = True
