@@ -16,7 +16,7 @@ from starlette.responses import JSONResponse, RedirectResponse, HTMLResponse
 
 import utils
 from utils.path import get_segment
-from frontend.routers.api import projects
+from frontend.routers.api import projects, users
 from utils.dependency import get_db
 
 
@@ -50,8 +50,13 @@ async def get_project_from_db_by_id(db: Session, project_id: int):
 
 
 async def get_all_projects_from_db(db: Session):
-    db_project = db.query(utils.models.Projects).all()
-    return db_project
+    db_projects = db.query(utils.models.Projects).all()
+    return db_projects
+
+
+async def get_all_users_from_db(db: Session):
+    db_users = db.query(utils.models.ApplicationUser).all()
+    return db_users
 
 
 # endregion crud
@@ -83,7 +88,21 @@ async def home_page(request: Request, db: Session = Depends(get_db)):
     )
 
 
+@app.get(
+    "/createProject",
+    response_class=HTMLResponse,
+)
+async def project_creation(request: Request, db: Session = Depends(get_db)):
+    db_users = await get_all_users_from_db(db)
+
+    return templates.TemplateResponse(
+        "create_project.html",
+        context={"request": request, "users": db_users},
+    )
+
+
 app.include_router(projects.router)
+app.include_router(users.router)
 
 if __name__ == "__main__":
     uvicorn.run("main:app", reload=True)

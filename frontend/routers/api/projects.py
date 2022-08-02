@@ -18,9 +18,8 @@ router = APIRouter(prefix="/api/project", tags=["Projects"])
 class ProjectRequest(BaseModel):
     title: str
     link: str
-    first_name: str
-    last_name: str
     picture: str
+    user_id: int
 
 
 class OptionalProjectRequest(BaseModel):
@@ -29,28 +28,32 @@ class OptionalProjectRequest(BaseModel):
     first_name: Optional[str]
     last_name: Optional[str]
     picture: Optional[str]
+    user_id: Optional[int]
 
 
 # endregion schemas
 
 
 # region crud
+async def get_member_from_db(db: Session, user_id: int):
+    return (
+        db.query(utils.models.ApplicationUser)
+        .filter(utils.models.ApplicationUser.id == user_id)
+        .first()
+    )
 
 
 async def create_db_project(
-    db: Session,
-    title: str,
-    link: str,
-    first_name: str,
-    last_name: str,
-    picture: str,
+    db: Session, title: str, link: str, picture: str, user_id: int
 ):
     db_project = utils.models.Projects()
     db_project.title = title
     db_project.link = link
-    db_project.first_name = first_name
-    db_project.last_name = last_name
     db_project.picture = picture
+    db_project.user_id = user_id
+    db_user = await get_member_from_db(db, user_id=user_id)
+    db_project.first_name = db_user.first_name
+    db_project.last_name = db_user.last_name
     db.add(db_project)
     db.commit()
     return db_project
@@ -117,7 +120,7 @@ async def get_project_by_title(title: str, db: Session = Depends(get_db)):
 
 
 @router.post(
-    "/",
+    "",
     response_model=utils.default_schemas.Projects,
 )
 async def create_project(
@@ -127,9 +130,8 @@ async def create_project(
         db,
         project_request.title,
         project_request.link,
-        project_request.first_name,
-        project_request.last_name,
         project_request.picture,
+        project_request.user_id,
     )
     return project
 
@@ -154,6 +156,7 @@ async def update_full_project(
     db_project.first_name = project_request.first_name
     db_project.last_name = project_request.last_name
     db_project.picture = project_request.picture
+    db_project.user_id = project_request.user_id
     db.add(db_project)
     db.commit()
     return db_project
