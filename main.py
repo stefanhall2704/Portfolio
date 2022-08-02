@@ -27,11 +27,6 @@ router = APIRouter(tags=["frontend"], include_in_schema=False)
 templates = Jinja2Templates(directory="templates")
 
 
-@app.get("/home")
-async def root():
-    return {"message": "Hello World"}
-
-
 app.mount("/static", StaticFiles(directory="static"), name="static")
 
 
@@ -54,6 +49,11 @@ async def get_project_from_db_by_id(db: Session, project_id: int):
     return db_project
 
 
+async def get_all_projects_from_db(db: Session):
+    db_project = db.query(utils.models.Projects).all()
+    return db_project
+
+
 # endregion crud
 
 
@@ -70,9 +70,17 @@ async def home_page(project_id: int, request: Request, db: Session = Depends(get
     )
 
 
-@app.get("/items/{id}", response_class=HTMLResponse)
-async def read_item(request: Request, id: str):
-    return templates.TemplateResponse("item.html", {"request": request, "id": id})
+@app.get(
+    "/home",
+    response_class=HTMLResponse,
+)
+async def home_page(request: Request, db: Session = Depends(get_db)):
+    db_project = await get_all_projects_from_db(db)
+
+    return templates.TemplateResponse(
+        "projects.html",
+        context={"request": request, "projects": db_project},
+    )
 
 
 app.include_router(projects.router)
