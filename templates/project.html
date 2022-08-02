@@ -1,0 +1,151 @@
+{% block stylesheets %}
+<style>
+</style>
+
+{% endblock stylesheets %}
+
+{% block content %}
+<body>
+    <!-- Begin page content -->
+    <div class="container-fluid">
+      
+      <div class="row cover top">
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12 headline">
+              <h1 class="text-center">Hi, I'm Stefan</h1>
+              <p class="lead text-center">A Full Stack Developer.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 center-block text-center">
+              <a href="#about"><span id="scrollIcon" class="front-glyph glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      
+      <div id="about" class="row cover">
+        <h2 class="text-center">About Me</h2>
+        <div class="row">
+          <div class="col-md-6 text-center about-info">
+            <p class="text-center">I'm a self taught web developer from Chester, VA. I'm currently learning Site Reliability Engineering concepts with the Google <a href="https://sre.google/sre-book/table-of-contents/">SRE Book</a>.</p>
+          </div>
+          <div class="col-md-6 about-tools">
+            <p class="text-center">Here's a few of the tools I use</p>
+              <div class="col-xs-6">
+                <ul>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>Javascript</li>
+                  <li>Python</li>
+                  <li>FastAPI</li>
+                  <li>Django</li>
+                  <li>JQuery</li>
+                  <li>Git</li>
+                </ul>
+              </div>
+          </div>
+          <div class="row break">
+            <div class="col-md-6 about-last">
+              <p class="text-center">Check out my latest projects <span class="glyphicon glyphicon-arrow-down"></span></p>
+            </div>
+          </div>
+        </div> 
+      </div><!-- End #About -->
+
+      <div id="portfolio" class="row cover">
+        <h2 class="text-center">Portfolio</h2>
+        <div class="container">
+          <div class="row portfolio-projects"> <!-- Two project row-->
+            <div class="col-lg-6"> <!--1st side project -->
+              <div class="row"> 
+                <div class="col-sm-5 text-center">
+                  <h4 class="portfolio-projects--title">Stefan's Blog</h4>
+                  <p class="portfolio-projects--desc">Uses: Django</p>
+                  <a class="btn btn-rounded portfolio-projects--btn" href="https://stefhall2704.pythonanywhere.com/" role="button">View Project</a>
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6"> <!--2nd side project -->
+              <div class="row"> 
+                <div class="col-sm-5 text-center pull-right-sm"><!--flipped on small, unflipped on large-->
+                  <h4 class="portfolio-projects--title">Task Timer</h4>
+                  <p class="portfolio-projects--desc">A Pomodoro clock timer with a task list integration</p>
+                  <p class="portfolio-projects--desc">Uses: Javascript, JQuery, Bootstrap</p>
+                  <a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Task-Timer/" role="button">View Project</a>
+                </div>
+                <div class="col-sm-7 text-center pull-right-sm"><!--flipped on small, unflipped on large-->
+                  <img class="img-rounded portfolio-projects--image" src="https://sonorangirl.github.io/img/slice-task-timer.png">
+                </div>
+              </div>
+            </div>
+          </div><!--end Two project row-->
+
+          <div class="row portfolio-projects"> <!-- Opposite Two project row-->
+            <div class="col-lg-6"> <!--1st side project -->
+              <div class="row"> 
+                <div class="col-sm-5 text-center">
+                  <h4 class="portfolio-projects--title">Whats the Weather</h4>
+                  <p class="portfolio-projects--desc">A weather app to check current weather conditions.</p>
+                  <p class="portfolio-projects--desc">Uses: Javascript, Jquery, APIs</p>
+                  <a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Weather/" role="button">View Project</a>
+                </div>
+                <div class="col-sm-7 text-center">
+                  <img class="img-rounded portfolio-projects--image" src="https://sonorangirl.github.io/img/weather-slice.png">
+                </div>
+              </div>
+            </div>
+            <div class="col-lg-6"> <!--2nd side project -->
+              <div class="row"> 
+                <div class="col-sm-5 text-center pull-right-sm"><!--flipped on small, unflipped on large-->
+                  <h4 class="portfolio-projects--title">Simon Game</h4>
+                  <p class="portfolio-projects--desc">A simple recreation of the 80s game Simon.</p>
+                  <p class="portfolio-projects--desc">Uses: Javascript, Sass, JQuery</p>
+                  <a class="btn btn-rounded portfolio-projects--btn" href="https://sonorangirl.github.io/Simon-Game/" role="button">View Project</a>
+                </div>
+                <div class="col-sm-7 text-center pull-right-sm"><!--flipped on small, unflipped on large-->
+                  <img class="img-rounded portfolio-projects--image" src="https://sonorangirl.github.io/img/slice-simon.png">
+                </div>
+              </div>
+            </div>
+          </div><!--end Opposite Two project row-->
+
+        </div>
+        </div>
+      </div><!-- End #Portfolio -->
+
+      <div id="contact" class="row cover bottom">
+        <h2 class="text-center contact-header">Contact Me</h2>
+        <p class="text-center contact-email">Get in touch with me <span class="glyphicon glyphicon-arrow-right"></span> manahan.erin@gmail.com</p>
+        <div class="text-center contact-social-icons">
+          <p>Or find me on:</p>
+          <ul class="centered">
+            <a href="https://codepen.io/sonorangirl/"><li><i class="fa fa-codepen"></i> CodePen</li></a>
+            <a href="https://www.linkedin.com/in/emanahan"><li><i class="fa fa-linkedin-square"></i> LinkedIn</li></a>
+            <a href="https://github.com/sonorangirl"><li><i class="fa fa-github"></i> Github</li></a>
+            <a href="https://freecodecamp.com/sonorangirl"><li>(<i class="fa fa-fire"></i>) FreeCodeCamp</li></a>
+            <a href="http://teamtreehouse.com/erinmanahan"><li> Treehouse</li></a>
+            <a href="https://twitter.com/sonoran_girl"><li><i class="fa fa-twitter"></i> Twitter</li></a>
+          </ul>
+        </p>
+        
+      </div><!-- End #Contact -->
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+      </div>
+    </footer>
+
+  </body>
+  {% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+</script>
+
+{% endblock javascripts %}
