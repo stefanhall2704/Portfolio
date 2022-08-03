@@ -83,7 +83,7 @@ async def home_page(request: Request, db: Session = Depends(get_db)):
     db_project = await get_all_projects_from_db(db)
 
     return templates.TemplateResponse(
-        "projects.html",
+        "home.html",
         context={"request": request, "projects": db_project},
     )
 

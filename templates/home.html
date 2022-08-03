@@ -1,0 +1,132 @@
+{% block stylesheets %}
+<style>
+</style>
+
+{% endblock stylesheets %}
+
+{% block content %}
+<body>
+    <!-- Begin page content -->
+    <div class="container-fluid">
+      <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
+      <div class="card-body>">
+        <div class="card-header">
+            <a href="/createProject" class="btn btn--bounce btn--shimmer">New Project</a>
+        </div>
+      </div>
+      
+      <div class="row cover top">
+        <div class="col-xs-12">
+          <div class="row">
+            <div class="col-xs-12 headline">
+              <h1 class="text-center">Hi, I'm Stefan</h1>
+              <p class="lead text-center">A Full Stack Developer.</p>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-xs-12 center-block text-center">
+              <a href="#about"><span id="scrollIcon" class="front-glyph glyphicon glyphicon-menu-down" aria-hidden="true"></span></a>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div id="about" class="row cover">
+        <h2 class="text-center">About Me</h2>
+        <div class="row">
+          <div class="col-md-6 text-center about-info">
+            <p class="text-center">I'm a self taught web developer from Chester, VA. I'm currently learning Site Reliability Engineering concepts with the Google <a href="https://sre.google/sre-book/table-of-contents/">SRE Book</a>.</p>
+          </div>
+          <div class="col-md-6 about-tools">
+            <p class="text-center">Here's a few of the tools I use</p>
+              <div class="col-xs-6">
+                <ul>
+                  <li>HTML</li>
+                  <li>CSS</li>
+                  <li>Javascript</li>
+                  <li>Python</li>
+                  <li>FastAPI</li>
+                  <li>Django</li>
+                  <li>JQuery</li>
+                  <li>Git</li>
+                </ul>
+              </div>
+          </div>
+          <div class="row break">
+            <div class="col-md-6 about-last">
+              <p class="text-center">Check out my latest projects <span class="glyphicon glyphicon-arrow-down"></span></p>
+            </div>
+          </div>
+        </div> 
+      </div><!-- End #About -->
+
+      <div id="portfolio" class="row cover">
+        <h2 class="text-center">Portfolio</h2>
+        <div class="container">
+          <div class="row portfolio-projects"> <!-- Two project row-->
+            <div class="col-lg-6"> <!--1st side project -->
+              <div class="row"> 
+                <div class="col-sm-5 text-center">
+                    {% for project in projects %}
+                        <div style="">
+                            <div class="thumbnail">
+                                {% if project.link %}
+                                    <a href="{{project.link}}"><img style="width:15%; height: 20%;" src="{{project.picture}}"></a>
+                                {% endif %}
+                            <div class="caption">
+                                <h4>{{project.title}}</h4>
+                                <p>Author:
+                                    <br>
+                                    <small><i>{{project.first_name}} {{project.last_name}}</i></small>
+                                </p>
+                            </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+              </div>
+            </div>
+
+
+        </div>
+        </div>
+      </div><!-- End #Portfolio -->
+      <!-- Icons -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+      <!-- End Icons -->
+      <div id="contact" class="row cover bottom">
+        <h2 class="text-center contact-header">Contact Me</h2>
+        <p class="text-center contact-email">Get in touch with me <span class="glyphicon glyphicon-arrow-right"></span> stefhall.2704@gmail.com</p>
+        <br>
+        <p class="text-center contact-email">Get in touch with me <span class="glyphicon glyphicon-arrow-right"></span> (804)-930-4783</p>
+        <div class="text-center contact-social-icons">
+          <p>Or find me on:</p>
+          <ul class="centered">
+            <a href="https://codepen.io/stefan_hall"><li><i class="fa fa-codepen"></i> CodePen</li></a>
+            <a href="https://www.linkedin.com/in/stefan-hall-b4787b13b/"><li><i class="fa fa-linkedin-square"></i> LinkedIn</li></a>
+            <a href="https://github.com/stefanhall2704"><li><i class="fa fa-github"></i> Github</li></a>
+            <a href="https://www.freecodecamp.org/stefan_hall"><li><i class="fa fa-free-code-camp"></i> FreeCodeCamp</li></a>
+          </ul>
+        </p>
+        
+      </div><!-- End #Contact -->
+
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+      </div>
+    </footer>
+
+  </body>
+  {% endblock content %}
+
+<!-- Specific Page JS goes HERE  -->
+{% block javascripts %}
+<script>
+</script>
+
+{% endblock javascripts %}

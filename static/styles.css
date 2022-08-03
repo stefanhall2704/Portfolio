@@ -1,3 +1,224 @@
-h1 {
-    color: green;
+@-webkit-keyframes bounce {
+    0% {
+        -webkit-transform: scale(1)
+    }
+
+    25% {
+        -webkit-transform: scale(1.075)
+    }
+
+    30% {
+        -webkit-transform: scale(1.04)
+    }
+
+    35% {
+        -webkit-transform: scale(1)
+    }
+
+    40% {
+        -webkit-transform: scale(0.96)
+    }
+
+    45% {
+        -webkit-transform: scale(0.97)
+    }
+
+    50% {
+        -webkit-transform: scale(1)
+    }
+
+    55% {
+        -webkit-transform: scale(1.01)
+    }
+
+    60% {
+        -webkit-transform: scale(1.01)
+    }
+
+    65% {
+        -webkit-transform: scale(1)
+    }
+
+    70% {
+        -webkit-transform: scale(0.98)
+    }
+
+    75% {
+        -webkit-transform: scale(0.99)
+    }
+
+    80% {
+        -webkit-transform: scale(1)
+    }
+
+    85% {
+        -webkit-transform: scale(1)
+    }
+
+    90% {
+        -webkit-transform: scale(1.01)
+    }
+
+    95% {
+        -webkit-transform: scale(1.01)
+    }
+
+    100% {
+        -webkit-transform: scale(1)
+    }
+}
+
+@keyframes bounce {
+    0% {
+        transform: scale(1)
+    }
+
+    25% {
+        transform: scale(1.075)
+    }
+
+    30% {
+        transform: scale(1.04)
+    }
+
+    35% {
+        transform: scale(1)
+    }
+
+    40% {
+        transform: scale(0.96)
+    }
+
+    45% {
+        transform: scale(0.97)
+    }
+
+    50% {
+        transform: scale(1)
+    }
+
+    55% {
+        transform: scale(1.01)
+    }
+
+    60% {
+        transform: scale(1.01)
+    }
+
+    65% {
+        transform: scale(1)
+    }
+
+    70% {
+        transform: scale(0.98)
+    }
+
+    75% {
+        transform: scale(0.99)
+    }
+
+    80% {
+        transform: scale(1)
+    }
+
+    85% {
+        transform: scale(1)
+    }
+
+    90% {
+        transform: scale(1.01)
+    }
+
+    95% {
+        transform: scale(1.01)
+    }
+
+    100% {
+        transform: scale(1)
+    }
+}
+
+@-webkit-keyframes shimmer {
+    0% {
+        left: -100%
+    }
+
+    100% {
+        left: 100%
+    }
+}
+
+@keyframes shimmer {
+    0% {
+        left: -100%
+    }
+
+    100% {
+        left: 100%
+    }
+}
+
+
+
+
+.btn {
+    display: inline-block;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    width: auto;
+    padding: 10px 20px;
+    margin: 20px;
+    border: 2px solid #fff;
+    border-radius: .25em;
+    overflow: hidden;
+    *overflow: visible;
+    vertical-align: middle;
+    position: relative;
+    text-decoration: none;
+    text-shadow: 0 0 1px rgba(255,255,255,0.5),0 1px 1px rgba(0,0,0,0.5);
+    text-align: center;
+    font-size: inherit;
+    -webkit-font-smoothing: antialiased;
+    font-smoothing: antialiased;
+    background-color: #e3193b;
+    background-postion: 0;
+    background-repeat: repeat-x;
+    background-image: -webkit-linear-gradient(top,rgba(255,255,255,0.48) 0,rgba(255,255,255,0) 30%);
+    background-image: linear-gradient(to bottom,rgba(255,255,255,0.48) 0,rgba(255,255,255,0) 30%);
+    box-shadow: 0 1px 7px rgba(0,0,0,0.5);
+    color: #fff;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform-origin: 50% 50%;
+    transform-origin: 50% 50%;
+    cursor: pointer
+}
+
+.btn:hover,.btn:active,.btn:focus {
+    color: #fff
+}
+
+
+.btn--shimmer:after {
+    pointer-events: none;
+    content: " ";
+    display: block;
+    height: 100%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: -100%;
+    background: -webkit-linear-gradient(-45deg,rgba(255,255,255,0) 0,rgba(255,255,255,0) 18%,rgba(255,255,255,0.97) 50%,rgba(255,255,255,1) 51%,rgba(255,255,255,0) 86%,rgba(255,255,255,0) 100%);
+    background: linear-gradient(-45deg,rgba(255,255,255,0) 0,rgba(255,255,255,0) 18%,rgba(255,255,255,0.97) 50%,rgba(255,255,255,1) 51%,rgba(255,255,255,0) 86%,rgba(255,255,255,0) 100%)
+}
+
+.btn--shimmer:hover:after,.btn--shimmer:focus:after {
+    -webkit-animation: shimmer .8s 1 normal forwards;
+    animation: shimmer .8s 1 normal forwards
+}
+
+.btn--bounce:hover,.btn--bounce:active,.btn--bounce:focus{
+    -ms-transform: scale(1.035);
+    -webkit-animation: bounce .5s 1 normal forwards;
+    animation: bounce .5s 1 normal forwards
 }
