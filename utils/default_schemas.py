@@ -9,8 +9,6 @@ class Projects(BaseModel):
     id: int
     title: str
     link: str
-    first_name: str
-    last_name: str
     picture: str
     user_id: int
 

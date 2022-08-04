@@ -1,20 +1,67 @@
-{% block stylesheets %}
-<style>
-</style>
-
-{% endblock stylesheets %}
-
+<link href='https://fonts.googleapis.com/css?family=Lobster' rel='stylesheet'>
 {% block content %}
+
 <body>
+    <!-- Main Sidebar Container -->
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+      <!-- Brand Logo -->
+      <a href="/" class="brand-link">
+        <span class="brand-text font-weight-light">Contact Me Here</span>
+      </a>
+  
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <!-- Sidebar user panel (optional) -->
+            {% if pagecontext %}
+            <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+              <div class="info">
+                <a href="#" class="d-block">{{pagecontext}}</a>
+            </div>
+          </div>
+          {% endif %}
+  
+  
+        <!-- Sidebar Menu -->
+        <nav class="mt-2">
+          <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+            <li class="nav-item">
+              <a href="https://codepen.io/stefan_hall" class="contact-links">
+                <i class="fa fa-codepen"></i>
+                CodePen
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.linkedin.com/in/stefan-hall-b4787b13b/" class="contact-links">
+                <i class="fa fa-linkedin-square"></i>
+                LinkedIn
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://github.com/stefanhall2704" class="contact-links">
+                <i class="fa fa-github"></i>
+                Github
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="https://www.freecodecamp.org/stefan_hall" class="contact-links">
+                <i class="fa fa-free-code-camp"></i>
+                 FreeCodeCamp
+              </a>
+            </li>
+        </nav>
+        <!-- /.sidebar-menu -->
+      </div>
+      <!-- /.sidebar -->
+    </aside>
+  <div id="list_position">
     <!-- Begin page content -->
     <div class="container-fluid">
       <link href="{{ url_for('static', path='/styles.css') }}" rel="stylesheet">
       <div class="card-body>">
         <div class="card-header">
-            <a href="/createProject" class="btn btn--bounce btn--shimmer">New Project</a>
+            <a href="/project/create" class="btn btn--bounce btn--shimmer">New Project</a>
         </div>
       </div>
-      
       <div class="row cover top">
         <div class="col-xs-12">
           <div class="row">
@@ -39,18 +86,20 @@
           </div>
           <div class="col-md-6 about-tools">
             <p class="text-center">Here's a few of the tools I use</p>
-              <div class="col-xs-6">
-                <ul>
-                  <li>HTML</li>
-                  <li>CSS</li>
-                  <li>Javascript</li>
-                  <li>Python</li>
-                  <li>FastAPI</li>
-                  <li>Django</li>
-                  <li>JQuery</li>
-                  <li>Git</li>
-                </ul>
-              </div>
+            
+            <section class="skills_list full_bleed">
+              <ul class="timeline">
+                <li>HTML</li>
+                <li>CSS</li>
+                <li>Javascript</li>
+                <li>Python</li>
+                <li>FastAPI</li>
+                <li>Django</li>
+                <li>JQuery</li>
+                <li>Git</li>
+              </ul>
+            </section>
+          
           </div>
           <div class="row break">
             <div class="col-md-6 about-last">
@@ -61,7 +110,7 @@
       </div><!-- End #About -->
 
       <div id="portfolio" class="row cover">
-        <h2 class="text-center">Portfolio</h2>
+        <h2 class="text-center" style="text-decoration:underline;">Portfolio</h2>
         <div class="container">
           <div class="row portfolio-projects"> <!-- Two project row-->
             <div class="col-lg-6"> <!--1st side project -->
@@ -104,23 +153,23 @@
         <p class="text-center contact-email">Get in touch with me <span class="glyphicon glyphicon-arrow-right"></span> (804)-930-4783</p>
         <div class="text-center contact-social-icons">
           <p>Or find me on:</p>
-          <ul class="centered">
-            <a href="https://codepen.io/stefan_hall"><li><i class="fa fa-codepen"></i> CodePen</li></a>
-            <a href="https://www.linkedin.com/in/stefan-hall-b4787b13b/"><li><i class="fa fa-linkedin-square"></i> LinkedIn</li></a>
-            <a href="https://github.com/stefanhall2704"><li><i class="fa fa-github"></i> Github</li></a>
-            <a href="https://www.freecodecamp.org/stefan_hall"><li><i class="fa fa-free-code-camp"></i> FreeCodeCamp</li></a>
+          <ul class="timeline">
+            <a href="https://codepen.io/stefan_hall" class="contact-links"><li><i class="fa fa-codepen"></i> CodePen</li></a>
+            <a href="https://www.linkedin.com/in/stefan-hall-b4787b13b/" class="contact-links"><li><i class="fa fa-linkedin-square"></i> LinkedIn</li></a>
+            <a href="https://github.com/stefanhall2704" class="contact-links"><li><i class="fa fa-github"></i> Github</li></li></a>
+            <a href="https://www.freecodecamp.org/stefan_hall" class="contact-links"><li><i class="fa fa-free-code-camp"></i> FreeCodeCamp</li></a>
           </ul>
         </p>
         
       </div><!-- End #Contact -->
 
     </div>
-
+  </div>
     <footer class="footer">
       <div class="container">
       </div>
     </footer>
-
+  
   </body>
   {% endblock content %}
 

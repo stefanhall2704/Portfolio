@@ -100,8 +100,6 @@ async def update_user_by_id(
     db_user = await get_member_from_db(db, user_id=user_id)
     if not db_user:
         raise HTTPException(status_code=404, detail="User Not Found")
-    db_user.first_name = userData.first_name
-    db_user.last_name = userData.last_name
     db_user.email = userData.email
     db_user.phone_number = userData.phone_number
     db.add(db_user)
