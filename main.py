@@ -63,15 +63,15 @@ async def get_all_users_from_db(db: Session):
 
 
 @app.get(
-    "/project/{project_id}",
+    "/project/create",
     response_class=HTMLResponse,
 )
-async def home_page(project_id: int, request: Request, db: Session = Depends(get_db)):
-    db_project = await get_project_from_db_by_id(db, project_id=project_id)
+async def project_creation(request: Request, db: Session = Depends(get_db)):
+    db_users = await get_all_users_from_db(db)
 
     return templates.TemplateResponse(
-        "project.html",
-        context={"request": request, "project": db_project},
+        "create_project.html",
+        context={"request": request, "users": db_users},
     )
 
 
@@ -89,15 +89,15 @@ async def home_page(request: Request, db: Session = Depends(get_db)):
 
 
 @app.get(
-    "/createProject",
+    "/project/{project_id}",
     response_class=HTMLResponse,
 )
-async def project_creation(request: Request, db: Session = Depends(get_db)):
-    db_users = await get_all_users_from_db(db)
+async def home_page(project_id: int, request: Request, db: Session = Depends(get_db)):
+    db_project = await get_project_from_db_by_id(db, project_id=project_id)
 
     return templates.TemplateResponse(
-        "create_project.html",
-        context={"request": request, "users": db_users},
+        "project.html",
+        context={"request": request, "project": db_project},
     )
 
 
